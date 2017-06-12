@@ -63,14 +63,32 @@ namespace Zoo
         public IHttpActionResult Post([FromBody] Clasificaciones clasificacion)
         {
             RespuestaApi<Clasificaciones> resultado = new RespuestaApi<Clasificaciones>();
-            return Ok();
+            return Ok(resultado);
         }
 
         // PUT: api/Clasificaciones/5
         [HttpPut]
         public IHttpActionResult Put(int id, [FromBody] Clasificaciones clasificacion)
         {
-            return Ok();
+            RespuestaApi<Clasificaciones> respuesta = new RespuestaApi<Clasificaciones>();
+            respuesta.error = "";
+            int filasAfectadas = 0;
+            try
+            {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta())
+                {
+                    filasAfectadas = Db.ActualizarClasificaciones(id, clasificacion);
+                }
+                respuesta.totalElementos = filasAfectadas;
+                Db.Desconectar();
+            }
+            catch (Exception)
+            {
+                respuesta.totalElementos = 0;
+                respuesta.error = "Error al eliminar la marca";
+            }
+            return Ok(respuesta);
         }
 
         // DELETE: api/Clasificaciones/5

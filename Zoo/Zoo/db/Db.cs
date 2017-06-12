@@ -82,7 +82,7 @@ namespace Zoo.db
             reader.Close();
             return resultados;
         }
-
+        
         public static List<Especies> ListaEspeciesId(int id)
         {
             List<Especies> resultados = new List<Especies>();
@@ -202,5 +202,33 @@ namespace Zoo.db
             reader.Close();
             return resultados;
         }
+
+        public static int ActualizarClasificaciones(int id, Clasificaciones clasificacion)
+        {
+            string procedimiento = "dbo.ActualizarClasificaciones";
+
+            SqlCommand comando = new SqlCommand(procedimiento, conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter parametroId = new SqlParameter();
+            parametroId.ParameterName = "idClasificacion";
+            parametroId.SqlDbType = SqlDbType.Int;
+            parametroId.SqlValue = id;
+
+
+            SqlParameter parametroDenominacion = new SqlParameter();
+            parametroDenominacion.ParameterName = "denominacion";
+            parametroDenominacion.SqlDbType = SqlDbType.NVarChar;
+            parametroDenominacion.SqlValue = clasificacion.denominacion;
+
+
+            comando.Parameters.Add(parametroId);
+            comando.Parameters.Add(parametroDenominacion);
+
+            int filasAfectadas = comando.ExecuteNonQuery();
+
+            return filasAfectadas;
+        }
+
     }
 }
