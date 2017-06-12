@@ -61,7 +61,7 @@ namespace Zoo.Controllers
         // POST: api/Especies
         [HttpPost]
         public RespuestaApi<Especies> Post([FromBody] Especies especie)
-        {
+        {/*http://bitacoraweb.info/como-cargar-dinamicamente-un-select-con-jquery-javascript/*/
             RespuestaApi<Especies> resultado = new RespuestaApi<Especies>();
             List<Especies> data = new List<Especies>();
             return resultado;
@@ -73,7 +73,6 @@ namespace Zoo.Controllers
         {
             RespuestaApi<Especies> resultado = new RespuestaApi<Especies>();
             List<Especies> data = new List<Especies>();
-            return resultado;
         }
 
         // DELETE: api/Especies/5
@@ -82,7 +81,6 @@ namespace Zoo.Controllers
         {
             RespuestaApi<Especies> resultado = new RespuestaApi<Especies>();
             List<Especies> data = new List<Especies>();
-            return resultado;
         }
     }
 }
