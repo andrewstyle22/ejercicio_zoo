@@ -1,0 +1,397 @@
+{
+	"id": "a27955c7-c094-2ab0-f01a-efe6e68605fb",
+	"name": "Zoo",
+	"description": "",
+	"order": [
+		"697b6ac5-c198-141b-93d9-2557bd619557",
+		"f813f577-9006-8c13-5912-73b6a884d8cb",
+		"ce804772-8fde-2841-1f99-87ef3b608cfd",
+		"4b6d05ad-b7ee-e6a6-d456-9441afcc5bcf",
+		"8ac38620-6c02-ade6-cc59-b17469b59cc1",
+		"63443669-adc0-3d2b-ce41-c89c78975a0f",
+		"73f4d9b6-9669-2016-0846-926aa7154958",
+		"18bd8af0-ab32-e594-2db2-b5f79b2b9b71",
+		"1abe2cda-3847-5dc6-d7c7-2657c61fb717"
+	],
+	"folders": [],
+	"timestamp": 1497369383017,
+	"owner": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "18bd8af0-ab32-e594-2db2-b5f79b2b9b71",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:60503/api/especies/10009",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [
+				{
+					"key": "clasificacion.idClasificacion",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "tipoAnimal.idTipoAnimal",
+					"value": "3",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nombre",
+					"value": "Loro",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nPatas",
+					"value": "2",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "esMascota",
+					"value": "false",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1497379349195,
+			"name": "Actualizar Especie",
+			"description": "",
+			"collectionId": "a27955c7-c094-2ab0-f01a-efe6e68605fb",
+			"responses": []
+		},
+		{
+			"id": "1abe2cda-3847-5dc6-d7c7-2657c61fb717",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:60503/api/especies?id=10006",
+			"queryParams": [
+				{
+					"key": "id",
+					"value": "10006",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1497379350715,
+			"name": "Borrar Especie",
+			"description": "",
+			"collectionId": "a27955c7-c094-2ab0-f01a-efe6e68605fb",
+			"responses": []
+		},
+		{
+			"id": "4b6d05ad-b7ee-e6a6-d456-9441afcc5bcf",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:60503/api/tiposanimal",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "a27955c7-c094-2ab0-f01a-efe6e68605fb",
+			"data": [
+				{
+					"key": "id",
+					"value": "0",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "denominacion",
+					"value": "TipoAnimal10",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "Insertar TipoAnimal",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1497369722220,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "63443669-adc0-3d2b-ce41-c89c78975a0f",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:60503/api/tiposanimal?id=9",
+			"queryParams": [
+				{
+					"key": "id",
+					"value": "9",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1497379345811,
+			"name": "Borrar Tipo Animal",
+			"description": "",
+			"collectionId": "a27955c7-c094-2ab0-f01a-efe6e68605fb",
+			"responses": []
+		},
+		{
+			"id": "697b6ac5-c198-141b-93d9-2557bd619557",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "http://localhost:60503/api/clasificaciones",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "denominacion",
+					"value": "linterna verde",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1497379336347,
+			"name": "Insertar Clasificacion",
+			"description": "",
+			"collectionId": "a27955c7-c094-2ab0-f01a-efe6e68605fb",
+			"responses": []
+		},
+		{
+			"id": "73f4d9b6-9669-2016-0846-926aa7154958",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:60503/api/especies/",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "clasificacion.idClasificacion",
+					"value": "3",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "tipoAnimal.idTipoAnimal",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nombre",
+					"value": "Loro",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "nPatas",
+					"value": "0",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "esMascota",
+					"value": "true",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1497379347564,
+			"name": "Insertar Especie",
+			"description": "",
+			"collectionId": "a27955c7-c094-2ab0-f01a-efe6e68605fb",
+			"responses": []
+		},
+		{
+			"id": "8ac38620-6c02-ade6-cc59-b17469b59cc1",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:60503/api/tiposanimal/9",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [
+				{
+					"key": "denominacion",
+					"value": "TipoAnimal99",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1497379344363,
+			"name": "Actualizar TipoAnimal",
+			"description": "",
+			"collectionId": "a27955c7-c094-2ab0-f01a-efe6e68605fb",
+			"responses": []
+		},
+		{
+			"id": "ce804772-8fde-2841-1f99-87ef3b608cfd",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:60503/api/clasificaciones?id=1010",
+			"queryParams": [
+				{
+					"key": "id",
+					"value": "1010",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1497379340715,
+			"name": "Borrar Clasificacion",
+			"description": "",
+			"collectionId": "a27955c7-c094-2ab0-f01a-efe6e68605fb",
+			"responses": []
+		},
+		{
+			"id": "f813f577-9006-8c13-5912-73b6a884d8cb",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:60503/api/clasificaciones/1010",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [
+				{
+					"key": "denominacion",
+					"value": "Shenna",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1497379338875,
+			"name": "Actuazlizar Clasificacion",
+			"description": "",
+			"collectionId": "a27955c7-c094-2ab0-f01a-efe6e68605fb",
+			"responses": []
+		}
+	]
+}
