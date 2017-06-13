@@ -63,8 +63,24 @@ namespace Zoo.Controllers
         public IHttpActionResult Post([FromBody] Especies especie)
         {/*http://bitacoraweb.info/como-cargar-dinamicamente-un-select-con-jquery-javascript/*/
             RespuestaApi<Especies> respuesta = new RespuestaApi<Especies>();
-            List<Especies> data = new List<Especies>();
-
+            respuesta.datos = especie.nombre;
+            respuesta.error = "";
+            int filasAfectadas = 0;
+            try
+            {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta())
+                {
+                    filasAfectadas = Db.InsertarEspecie(especie);
+                }
+                respuesta.totalElementos = filasAfectadas;
+                Db.Desconectar();
+            }
+            catch (Exception ex)
+            {
+                respuesta.totalElementos = 0;
+                respuesta.error = "Error al insertar la especie " + ex.ToString();
+            }
             return Ok(respuesta);
         }
 
@@ -73,19 +89,19 @@ namespace Zoo.Controllers
         public IHttpActionResult Put(long id, [FromBody] Especies especie)
         {
             RespuestaApi<Especies> respuesta = new RespuestaApi<Especies>();
-            List<Especies> data = new List<Especies>();
+            respuesta.datos = especie.nombre;
             respuesta.error = "";
             int filasAfectadas = 0;
             try {
                 Db.Conectar();
                 if (Db.EstaLaConexionAbierta()) {
-                    filasAfectadas = Db.ActualizarEspecie(id);
+                    filasAfectadas = Db.ActualizarEspecie(id, especie);
                 }
                 respuesta.totalElementos = filasAfectadas;
                 Db.Desconectar();
             } catch (Exception ex) {
                 respuesta.totalElementos = 0;
-                respuesta.error = "Error al eliminar la especie " + ex.ToString();
+                respuesta.error = "Error al actualizar la especie " + ex.ToString();
             }
             return Ok(respuesta);
         }
@@ -95,7 +111,7 @@ namespace Zoo.Controllers
         public IHttpActionResult Delete(long id)
         {
             RespuestaApi<Especies> respuesta = new RespuestaApi<Especies>();
-            List<Especies> data = new List<Especies>();
+            respuesta.datos = "Borrado el id " + id.ToString();
             respuesta.error = "";
             int filasAfectadas = 0;
             try {

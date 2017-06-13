@@ -83,7 +83,7 @@ namespace Zoo.db
             reader.Close();
             return resultados;
         }
-
+        
         public static List<Especies> ListaEspeciesId(long id) {
             List<Especies> resultados = new List<Especies>();
             string procedimientoAEjecutar = "dbo.Get_Especies_Id";
@@ -115,8 +115,94 @@ namespace Zoo.db
             return resultados;
         }
 
-        public static int ActualizarEspecie(long id) {
-            throw new NotImplementedException();
+        public static int InsertarEspecie(Especies especie)
+        {
+            string procedimiento = "dbo.InsertarEspecie";
+
+            SqlCommand comando = new SqlCommand(procedimiento, conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter parametroIdClasificacion = new SqlParameter();
+            parametroIdClasificacion.ParameterName = "idClasificacion";
+            parametroIdClasificacion.SqlDbType = SqlDbType.Int;
+            parametroIdClasificacion.SqlValue = especie.clasificacion.idClasificacion;
+            comando.Parameters.Add(parametroIdClasificacion);
+
+            SqlParameter parametroIdTipoAnimal = new SqlParameter();
+            parametroIdTipoAnimal.ParameterName = "idTipoAnimal";
+            parametroIdTipoAnimal.SqlDbType = SqlDbType.BigInt;
+            parametroIdTipoAnimal.SqlValue = especie.tipoAnimal.idTipoAnimal;
+            comando.Parameters.Add(parametroIdTipoAnimal);
+
+            SqlParameter parametroNombre = new SqlParameter();
+            parametroNombre.ParameterName = "nombre";
+            parametroNombre.SqlDbType = SqlDbType.NVarChar;
+            parametroNombre.SqlValue = especie.nombre;
+            comando.Parameters.Add(parametroNombre);
+
+            SqlParameter parametroNPatas = new SqlParameter();
+            parametroNPatas.ParameterName = "nPatas";
+            parametroNPatas.SqlDbType = SqlDbType.SmallInt;
+            parametroNPatas.SqlValue = especie.nPatas;
+            comando.Parameters.Add(parametroNPatas);
+
+            SqlParameter parametroEsMascotas = new SqlParameter();
+            parametroEsMascotas.ParameterName = "esMascotas";
+            parametroEsMascotas.SqlDbType = SqlDbType.Bit;
+            parametroEsMascotas.SqlValue = especie.esMascota;
+            comando.Parameters.Add(parametroEsMascotas);
+
+            int filasAfectadas = comando.ExecuteNonQuery();
+
+            return filasAfectadas;
+        }
+
+        public static int ActualizarEspecie(long id, Especies especie)
+        {
+            string procedimiento = "dbo.ActualizarEspecie";
+
+            SqlCommand comando = new SqlCommand(procedimiento, conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter parametroId = new SqlParameter();
+            parametroId.ParameterName = "idEspecie";
+            parametroId.SqlDbType = SqlDbType.BigInt;
+            parametroId.SqlValue = id;
+            comando.Parameters.Add(parametroId);
+
+            SqlParameter parametroIdClasificacion = new SqlParameter();
+            parametroIdClasificacion.ParameterName = "idClasificacion";
+            parametroIdClasificacion.SqlDbType = SqlDbType.Int;
+            parametroIdClasificacion.SqlValue = especie.clasificacion.idClasificacion;
+            comando.Parameters.Add(parametroIdClasificacion);
+
+            SqlParameter parametroIdTipoAnimal = new SqlParameter();
+            parametroIdTipoAnimal.ParameterName = "idTipoAnimal";
+            parametroIdTipoAnimal.SqlDbType = SqlDbType.BigInt;
+            parametroIdTipoAnimal.SqlValue = especie.tipoAnimal.idTipoAnimal;
+            comando.Parameters.Add(parametroIdTipoAnimal);
+
+            SqlParameter parametroNombre = new SqlParameter();
+            parametroNombre.ParameterName = "nombre";
+            parametroNombre.SqlDbType = SqlDbType.NVarChar;
+            parametroNombre.SqlValue = especie.nombre;
+            comando.Parameters.Add(parametroNombre);
+
+            SqlParameter parametroNPatas = new SqlParameter();
+            parametroNPatas.ParameterName = "nPatas";
+            parametroNPatas.SqlDbType = SqlDbType.SmallInt;
+            parametroNPatas.SqlValue = especie.nPatas;
+            comando.Parameters.Add(parametroNPatas);
+
+            SqlParameter parametroEsMascotas = new SqlParameter();
+            parametroEsMascotas.ParameterName = "esMascotas";
+            parametroEsMascotas.SqlDbType = SqlDbType.Bit;
+            parametroEsMascotas.SqlValue = especie.esMascota;
+            comando.Parameters.Add(parametroEsMascotas);
+
+            int filasAfectadas = comando.ExecuteNonQuery();
+
+            return filasAfectadas;
         }
 
         public static int EliminarEspecie(long id)
@@ -180,6 +266,40 @@ namespace Zoo.db
             }
             reader.Close();
             return resultados;
+        }
+
+
+        public static int InsertarTipoAnimal(TiposAnimal tipoAnimal)
+        {
+            string respuesta = "";
+            int filaAfectadas;
+            try
+            {
+                string procedimientoAEjecutar = "dbo.InsertarTipoAnimal";
+
+                SqlCommand comando = new SqlCommand(procedimientoAEjecutar, conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter parametroDenominacion = new SqlParameter();
+                parametroDenominacion.ParameterName = "denominacion";
+                parametroDenominacion.SqlDbType = SqlDbType.NVarChar;
+                parametroDenominacion.SqlValue = tipoAnimal.denominacion;
+
+                comando.Parameters.Add(parametroDenominacion);
+                filaAfectadas = comando.ExecuteNonQuery();
+
+            }
+            catch (SqlException ex)
+            {
+                respuesta = "Error al insertar: " + ex.ToString();
+                filaAfectadas = -1;
+            }
+            catch (Exception ex)
+            {
+                respuesta = "Error al insertar: " + respuesta + " " + ex.ToString();
+                filaAfectadas = -1;
+            }
+            return filaAfectadas;
         }
 
         public static int ActualizarTipoAnimal(long id,TiposAnimal tipoAnimal) {

@@ -60,10 +60,27 @@ namespace Zoo
 
         // POST: api/TiposAnimal
         [HttpPost]
-        public RespuestaApi<TiposAnimal> Post([FromBody] TiposAnimal tipoAnimal)
+        public IHttpActionResult Post([FromBody] TiposAnimal tipoAnimal)
         {
-            RespuestaApi<TiposAnimal> resultado = new RespuestaApi<TiposAnimal>();
-            return resultado;
+            RespuestaApi<TiposAnimal> respuesta = new RespuestaApi<TiposAnimal>();
+            respuesta.datos = tipoAnimal.denominacion;
+            respuesta.error = "";
+            int filaAfectadas = 0;
+            try
+            {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta())
+                {
+                    filaAfectadas = Db.InsertarTipoAnimal(tipoAnimal);
+                }
+                respuesta.totalElementos = filaAfectadas;
+            }
+            catch (Exception e)
+            {
+                respuesta.error = "Error al conectar con la base de datos " + e.ToString();
+            }
+            Db.Desconectar();
+            return Ok(respuesta);
         }
 
         // PUT: api/TiposAnimal/5
@@ -71,6 +88,7 @@ namespace Zoo
         public IHttpActionResult Put(long id,[FromBody] TiposAnimal tipoAnimal) {
 
             RespuestaApi<TiposAnimal> respuesta = new RespuestaApi<TiposAnimal>();
+            respuesta.datos = tipoAnimal.denominacion;
             respuesta.error = "";
             int filasAfectadas = 0;
             try {
@@ -92,6 +110,7 @@ namespace Zoo
         public IHttpActionResult Delete(long id)
         {
             RespuestaApi<TiposAnimal> respuesta = new RespuestaApi<TiposAnimal>();
+            respuesta.datos = "Borrado el id " + id.ToString();
             respuesta.error = "";
             int filasAfectadas = 0;
             try {

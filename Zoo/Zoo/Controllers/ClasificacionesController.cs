@@ -83,6 +83,7 @@ namespace Zoo
         public IHttpActionResult Put(int id,[FromBody] Clasificaciones clasificacion) {
 
             RespuestaApi<Clasificaciones> respuesta = new RespuestaApi<Clasificaciones>();
+            respuesta.datos = clasificacion.denominacion;
             respuesta.error = "";
             int filasAfectadas = 0;
             try
@@ -108,6 +109,7 @@ namespace Zoo
         public IHttpActionResult Delete(int id) 
         {
             RespuestaApi<Clasificaciones> respuesta = new RespuestaApi<Clasificaciones>();
+            respuesta.datos = "Borrado el id " + id.ToString();
             respuesta.error = "";
             int filasAfectadas = 0;
             try {
