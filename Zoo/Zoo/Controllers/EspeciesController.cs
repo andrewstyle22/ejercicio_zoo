@@ -35,7 +35,7 @@ namespace Zoo.Controllers
         }
 
         // GET: api/Especies/5
-        public RespuestaApi<Especies> Get(int id)
+        public RespuestaApi<Especies> Get(long id)
         {
             RespuestaApi<Especies> resultado = new RespuestaApi<Especies>();
             List<Especies> data = new List<Especies>();
@@ -60,27 +60,56 @@ namespace Zoo.Controllers
 
         // POST: api/Especies
         [HttpPost]
-        public RespuestaApi<Especies> Post([FromBody] Especies especie)
+        public IHttpActionResult Post([FromBody] Especies especie)
         {/*http://bitacoraweb.info/como-cargar-dinamicamente-un-select-con-jquery-javascript/*/
-            RespuestaApi<Especies> resultado = new RespuestaApi<Especies>();
+            RespuestaApi<Especies> respuesta = new RespuestaApi<Especies>();
             List<Especies> data = new List<Especies>();
-            return resultado;
+
+            return Ok(respuesta);
         }
 
         // PUT: api/Especies/5
         [HttpPut]
-        public RespuestaApi<Especies> Put(int id, [FromBody] Especies especie)
+        public IHttpActionResult Put(long id, [FromBody] Especies especie)
         {
-            RespuestaApi<Especies> resultado = new RespuestaApi<Especies>();
+            RespuestaApi<Especies> respuesta = new RespuestaApi<Especies>();
             List<Especies> data = new List<Especies>();
+            respuesta.error = "";
+            int filasAfectadas = 0;
+            try {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta()) {
+                    filasAfectadas = Db.ActualizarEspecie(id);
+                }
+                respuesta.totalElementos = filasAfectadas;
+                Db.Desconectar();
+            } catch (Exception ex) {
+                respuesta.totalElementos = 0;
+                respuesta.error = "Error al eliminar la especie " + ex.ToString();
+            }
+            return Ok(respuesta);
         }
 
         // DELETE: api/Especies/5
         [HttpDelete]
-        public RespuestaApi<Especies> Delete(int id)
+        public IHttpActionResult Delete(long id)
         {
-            RespuestaApi<Especies> resultado = new RespuestaApi<Especies>();
+            RespuestaApi<Especies> respuesta = new RespuestaApi<Especies>();
             List<Especies> data = new List<Especies>();
+            respuesta.error = "";
+            int filasAfectadas = 0;
+            try {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta()) {
+                    filasAfectadas = Db.EliminarEspecie(id);
+                }
+                respuesta.totalElementos = filasAfectadas;
+                Db.Desconectar();
+            } catch (Exception ex) {
+                respuesta.totalElementos = 0;
+                respuesta.error = "Error al eliminar la especie con id " + id.ToString() + " ERROR: " + ex.ToString();
+            }
+            return Ok(respuesta);
         }
     }
 }

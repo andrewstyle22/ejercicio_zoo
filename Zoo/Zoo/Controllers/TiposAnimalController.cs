@@ -24,9 +24,9 @@ namespace Zoo
                     resultado.error = "";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                resultado.error = "Error";
+                resultado.error = "Error " + ex.ToString();
             }
             resultado.totalElementos = data.Count;
             resultado.data = data;
@@ -35,7 +35,7 @@ namespace Zoo
         }
 
         // GET: api/TiposAnimal/5
-        public RespuestaApi<TiposAnimal> Get(int id)
+        public RespuestaApi<TiposAnimal> Get(long id)
         {
             RespuestaApi<TiposAnimal> resultado = new RespuestaApi<TiposAnimal>();
             List<TiposAnimal> data = new List<TiposAnimal>();
@@ -48,9 +48,9 @@ namespace Zoo
                     resultado.error = "";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                resultado.error = "Error";
+                resultado.error = "Error " + ex.ToString();
             }
             resultado.totalElementos = data.Count;
             resultado.data = data;
@@ -68,18 +68,44 @@ namespace Zoo
 
         // PUT: api/TiposAnimal/5
         [HttpPut]
-        public RespuestaApi<TiposAnimal> Put(int id, [FromBody] TiposAnimal tipoAnimal)
-        {
-            RespuestaApi<TiposAnimal> resultado = new RespuestaApi<TiposAnimal>();
-            return resultado;
+        public IHttpActionResult Put(long id,[FromBody] TiposAnimal tipoAnimal) {
+
+            RespuestaApi<TiposAnimal> respuesta = new RespuestaApi<TiposAnimal>();
+            respuesta.error = "";
+            int filasAfectadas = 0;
+            try {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta()) {
+                    filasAfectadas = Db.ActualizarTipoAnimal(id,tipoAnimal);
+                }
+                respuesta.totalElementos = filasAfectadas;
+                Db.Desconectar();
+            } catch (Exception ex) {
+                respuesta.totalElementos = 0;
+                respuesta.error = "Error al actualizar TipoAnimal con id " + id.ToString() + " ERROR: " + ex.ToString();
+            }
+            return Ok(respuesta);
         }
 
         // DELETE: api/TiposAnimal/5
         [HttpDelete]
-        public RespuestaApi<TiposAnimal> Delete(int id)
+        public IHttpActionResult Delete(long id)
         {
-            RespuestaApi<TiposAnimal> resultado = new RespuestaApi<TiposAnimal>();
-            return resultado;
+            RespuestaApi<TiposAnimal> respuesta = new RespuestaApi<TiposAnimal>();
+            respuesta.error = "";
+            int filasAfectadas = 0;
+            try {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta()) {
+                    filasAfectadas = Db.EliminarTipoAnimal(id);
+                }
+                respuesta.totalElementos = filasAfectadas;
+                Db.Desconectar();
+            } catch (Exception ex) {
+                respuesta.totalElementos = 0;
+                respuesta.error = "Error al eliminar TipoAnimal con id " +id.ToString() + " ERROR: "+ex.ToString();
+            }
+            return Ok(respuesta);
         }
     }
 }

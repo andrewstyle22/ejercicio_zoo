@@ -24,9 +24,9 @@ namespace Zoo
                     resultado.error = "";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                resultado.error = "Error";
+                resultado.error = "Error " + ex.ToString();
             }
             resultado.totalElementos = data.Count;
             resultado.data = data;
@@ -48,9 +48,9 @@ namespace Zoo
                     resultado.error = "";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                resultado.error = "Error";
+                resultado.error = "Error " + ex.ToString();
             }
             resultado.totalElementos = data.Count;
             resultado.data = data;
@@ -62,14 +62,26 @@ namespace Zoo
         [HttpPost]
         public IHttpActionResult Post([FromBody] Clasificaciones clasificacion)
         {
-            RespuestaApi<Clasificaciones> resultado = new RespuestaApi<Clasificaciones>();
-            return Ok(resultado);
+            RespuestaApi<Clasificaciones> respuesta = new RespuestaApi<Clasificaciones>();
+            respuesta.datos = clasificacion.denominacion;
+            int filaAfectadas = 0;
+            try {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta()) {
+                    filaAfectadas = Db.InsertarClasificacion(clasificacion);
+                }
+                respuesta.totalElementos = filaAfectadas;
+            } catch (Exception e) {
+                respuesta.error = "Error al conectar con la base de datos " + e.ToString();
+            }
+            Db.Desconectar();
+            return Ok(respuesta);
         }
 
         // PUT: api/Clasificaciones/5
         [HttpPut]
-        public IHttpActionResult Put(int id, [FromBody] Clasificaciones clasificacion)
-        {
+        public IHttpActionResult Put(int id,[FromBody] Clasificaciones clasificacion) {
+
             RespuestaApi<Clasificaciones> respuesta = new RespuestaApi<Clasificaciones>();
             respuesta.error = "";
             int filasAfectadas = 0;
@@ -83,19 +95,33 @@ namespace Zoo
                 respuesta.totalElementos = filasAfectadas;
                 Db.Desconectar();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 respuesta.totalElementos = 0;
-                respuesta.error = "Error al eliminar la marca";
+                respuesta.error = "Error al actualizar la clasificación con id "+id.ToString() + " ERROR: " + ex.ToString();
             }
             return Ok(respuesta);
         }
 
         // DELETE: api/Clasificaciones/5
         [HttpDelete]
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult Delete(int id) 
         {
-            return Ok();
+            RespuestaApi<Clasificaciones> respuesta = new RespuestaApi<Clasificaciones>();
+            respuesta.error = "";
+            int filasAfectadas = 0;
+            try {
+                Db.Conectar();
+                if (Db.EstaLaConexionAbierta()) {
+                    filasAfectadas = Db.EliminarClasificacion(id);
+                }
+                respuesta.totalElementos = filasAfectadas;
+                Db.Desconectar();
+            } catch (Exception ex) {
+                respuesta.totalElementos = 0;
+                respuesta.error = "Error al eliminar la  clasificación con id " + id.ToString() + " ERROR: " + ex.ToString();
+            }
+            return Ok(respuesta);
         }
     }
 }
