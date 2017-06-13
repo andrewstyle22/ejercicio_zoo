@@ -1,0 +1,326 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Zoo",
+		"_postman_id": "a27955c7-c094-2ab0-f01a-efe6e68605fb",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Insertar Clasificacion",
+			"request": {
+				"url": "http://localhost:60503/api/clasificaciones",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "",
+						"value": "",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "denominacion",
+							"value": "linterna verde",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Actuazlizar Clasificacion",
+			"request": {
+				"url": "http://localhost:60503/api/clasificaciones/1010",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "denominacion",
+							"value": "Shenna",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Clasificacion",
+			"request": {
+				"url": {
+					"raw": "http://localhost:60503/api/clasificaciones?id=1010",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "60503",
+					"path": [
+						"api",
+						"clasificaciones"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1010",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Insertar TipoAnimal",
+			"request": {
+				"url": "http://localhost:60503/api/tiposanimal",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "0",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "denominacion",
+							"value": "TipoAnimal10",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar TipoAnimal",
+			"request": {
+				"url": "http://localhost:60503/api/tiposanimal/9",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "denominacion",
+							"value": "TipoAnimal99",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Tipo Animal",
+			"request": {
+				"url": {
+					"raw": "http://localhost:60503/api/tiposanimal?id=9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "60503",
+					"path": [
+						"api",
+						"tiposanimal"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "9",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Insertar Especie",
+			"request": {
+				"url": "http://localhost:60503/api/especies/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clasificacion.idClasificacion",
+							"value": "3",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "tipoAnimal.idTipoAnimal",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "Loro",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nPatas",
+							"value": "0",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "esMascota",
+							"value": "true",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Especie",
+			"request": {
+				"url": "http://localhost:60503/api/especies/10009",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clasificacion.idClasificacion",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "tipoAnimal.idTipoAnimal",
+							"value": "3",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nombre",
+							"value": "Loro",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nPatas",
+							"value": "2",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "esMascota",
+							"value": "false",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Especie",
+			"request": {
+				"url": {
+					"raw": "http://localhost:60503/api/especies?id=10006",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "60503",
+					"path": [
+						"api",
+						"especies"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "10006",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
