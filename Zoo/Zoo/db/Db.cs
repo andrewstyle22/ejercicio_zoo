@@ -17,9 +17,9 @@ namespace Zoo.db
             try
             {
                 string cadenaConexion = @"Server=.\SQLEXPRESS;
-                                        Database=zoodb;
-                                        User Id=testuser;
-                                        Password = !Curso@2017; ";
+                                        Database=nombre de la base de datos;
+                                        User Id=id del usuario;
+                                        Password = Contraseña; ";
 
                 conexion.ConnectionString = cadenaConexion;
                 conexion.Open();
